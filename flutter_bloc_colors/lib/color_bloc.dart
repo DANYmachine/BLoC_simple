@@ -1,19 +1,26 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'color_event.dart';
 import 'color_state.dart';
 
-enum ColorEvent {
-  eventRed,
-  eventGreen,
-}
-
 class ColorBloc extends Bloc<ColorEvent, ColorState> {
-  Color color = Colors.green;
-  ColorBloc() : super(ColorEmptyState());
+  ColorBloc() : super(ColorEmptyState()) {
+    on<ColorEvent>((event, emit) {
+      if (event is ColorRedEvent) {
+        log(state.toString());
+        emit(ColorState(color: Colors.red));
+      } else if (event is ColorGreenEvent) {
+        log(state.toString());
 
-  Stream<Color> mapEventToState(ColorEvent event) async* {
-    color = (event == ColorEvent.eventRed) ? Colors.red : Colors.green;
-    yield color;
+        emit(ColorState(color: Colors.green));
+      } else if (event is ColorResetEvent) {
+        log(state.toString());
+
+        emit(ColorEmptyState());
+      }
+    });
   }
 }

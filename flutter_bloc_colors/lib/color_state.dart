@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-abstract class ColorState {}
+class ColorState {
+  Color color;
+  ColorState({required this.color});
+}
 
-class ColorEmptyState extends ColorState {}
-
-class ColorRedState extends ColorState {}
-
-class ColorGreenState extends ColorState {}
+class ColorEmptyState extends ColorState {
+  ColorEmptyState() : super(color: Colors.blue);
+}

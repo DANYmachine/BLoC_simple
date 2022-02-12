@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-@immutable
 abstract class ColorEvent {}
 
-class ColorRed extends ColorEvent {}
+class ColorResetEvent extends ColorEvent {}
 
-class ColorGreen extends ColorEvent {}
+class ColorRedEvent extends ColorEvent {}
+
+class ColorGreenEvent extends ColorEvent {}
